@@ -156,6 +156,9 @@ void fillSquare(int array[ROW][COL], int loop)
 {
     time_t t;
     srand((unsigned) time(&t));
+    bool unique = true;
+    int randNum;
+    
     while(checkMagicSquare(array) != true)
     {   
         //print loopCount
@@ -165,10 +168,31 @@ void fillSquare(int array[ROW][COL], int loop)
         for(int i = 0; i < ROW; i++)
         {
             for(int j = 0; j < COL; j++)
-            {                        
-            //Fill array
-            array[i][j] = (rand() % 9) + 1;
-            printf("%d \n", array[i][j]);
+            {   
+
+
+                //Fill array
+                do
+                {
+                    unique = true;
+                    randNum = (rand() % 9) + 1;
+                    for(int k = 0; k <= i; k++)
+                    {   
+                        for(int l = 0; l <= COL; l++)
+                        {
+                            if(randNum == array[k][l])
+                            {
+                                unique = false;
+                                //break;
+                                //printf("sus\n");
+                            }
+                        }
+                    }
+                }
+                while(!unique);
+
+                array[i][j] = randNum;
+                printf("%d \n", array[i][j]);
             //make sure array has no dupes
         
             //run checkSquare
