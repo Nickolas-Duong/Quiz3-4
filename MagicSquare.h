@@ -18,5 +18,6 @@ bool checkUpDiag(int array[3][3]);
 bool checkLowDiag(int array[3][3]);
 bool checkCenter(int array[3][3]);
 bool checkMagicSquare(int array[3][3]);
+void fillSquare(int array[ROW][COL], int loop);
 
 #endif
