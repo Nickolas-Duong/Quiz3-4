@@ -2,7 +2,7 @@
 #include "MagicSquare.h"
 
 //checkRow - loops and checks if a row is correct
-bool checkRow(int array[3][3], int col)
+bool checkRow(int array[ROW][COL], int col)
 {    
     //int count
     int count = 0;

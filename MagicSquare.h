@@ -2,6 +2,9 @@
 #ifndef MS_H
 #define MS_H
 
+#define ROW 3
+#define COL 3
+
 //libraries
 #include <time.h>
 #include <stdio.h>
