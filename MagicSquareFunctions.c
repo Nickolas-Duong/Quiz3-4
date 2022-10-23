@@ -203,7 +203,31 @@ void fillSquare(int array[ROW][COL], int loop)
             
             loop++; 
         }
+        else
+        {
+            printf("Lo Shou Magic Square Match Found!\n");
+            for(int i = 0; i < ROW; i++)
+            {
+                if(i == 0)
+                {
+                    printf("-----------------\n");
+                }
 
+                for(int j = 0; j < COL; j++)
+                {
+                    printf("| %d | ", array[i][j]);
+                    if(j == 2)
+                    {
+                        printf("\n");
+                    }
+                }
+
+                if(i == 2)
+                {
+                    printf("-----------------\n");
+                }
+            }
+        }
     
     }while(checkMagicSquare(array) != true);
 }
