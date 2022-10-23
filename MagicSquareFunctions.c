@@ -207,7 +207,7 @@ void fillSquare(int array[ROW][COL], int loop)
         else
         {
             //print found magic square
-            printf("Lo Shou Magic Square Match Found!\n");
+            printf("Lo Shu Magic Square Match Found!\n");
             for(int i = 0; i < ROW; i++)
             {
                 if(i == 0)
