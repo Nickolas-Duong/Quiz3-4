@@ -2,6 +2,7 @@
 #ifndef MS_H
 #define MS_H
 
+//Define ROW & COL
 #define ROW 3
 #define COL 3
 

@@ -123,11 +123,13 @@ bool checkMagicSquare(int array[ROW][COL])
         {
             count = count + 2;
         }
-
+        
+        //if not correct
         if(count != 8)
         {
             return false;
         }
+        //else if correct 
         else
         {
             return true;
@@ -139,12 +141,11 @@ bool checkMagicSquare(int array[ROW][COL])
     {
         return false;
     }
-    //if count == 8
-        //return true
 }
 
 void fillSquare(int array[ROW][COL], int loop)
 {
+    //local variables
     time_t t;
     srand((unsigned) time(&t));
     bool unique = true;
@@ -163,48 +164,49 @@ void fillSquare(int array[ROW][COL], int loop)
                 //Fill array
                 do
                 {
+                    //if unique
                     unique = true;
+
+                    //random num
                     randNum = (rand() % 9) + 1;
+
+                    //check array if previous entries are not duplicates
                     for(int k = 0; k <= i; k++)
                     {   
                         for(int l = 0; l <= COL; l++)
                         {
+                            //if it is a duplicate
                             if(randNum == array[k][l])
                             {
+                                //set unique to false
                                 unique = false;
-                                //break;
-                                //printf("sus\n");
                             }
                         }
                     }
-                }
-                while(!unique);
+                }while(!unique);
 
                 array[i][j] = randNum;
-                //printf("%d \n", array[i][j]);
-            //make sure array has no dupes
-        
-            //run checkSquare
-            //if pass then exit loop
-            //else
-                //loopCount++}}
             }
         }
-        //break;
+        //if not found
         if(checkMagicSquare(array) != true )
         {            
             for (int i = 0; i < ROW; i++)
             {
                 for(int j = 0; j < COL; j++)
                 {
+                    //set all items in array to 0
                     array[i][j] = 0;
                 }
             }
             
+            //increase loop counter
             loop++; 
         }
+        //if found
         else
         {
+            //print found magic square
             printf("Lo Shou Magic Square Match Found!\n");
             for(int i = 0; i < ROW; i++)
             {
@@ -228,6 +230,5 @@ void fillSquare(int array[ROW][COL], int loop)
                 }
             }
         }
-    
     }while(checkMagicSquare(array) != true);
 }
