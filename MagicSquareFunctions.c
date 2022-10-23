@@ -12,6 +12,7 @@ bool checkRow(int array[ROW][COL], int col)
     {     
         //count = count + array[int][col]
         count = count + array[i][col];
+        //printf("Count: %d\n", count);
     }
     //if count == 15
     if(count == 15)
@@ -37,6 +38,7 @@ bool checkCol(int array[ROW][COL], int row)
     {     
         //count = count + array[int][col]
         count = count + array[row][i];
+        //printf("Count: %d\n", count);
     }
     //if count == 15
     if(count == 15)
@@ -56,7 +58,7 @@ bool checkCol(int array[ROW][COL], int row)
 bool checkUpDiag(int array[ROW][COL])
 {    
     //if [3,1] + [1,3] == 10
-    if((array[3][1] + array[1][3]) == 10)
+    if((array[2][0] + array[0][2]) == 10)
         //return true
         return true;
     //else
@@ -67,7 +69,7 @@ bool checkUpDiag(int array[ROW][COL])
 //checkLowDiag - checks top to bottom diagonal
 bool checkLowDiag(int array[ROW][COL])
 {    //if [1,1] + [3,3] == 10
-    if((array[1][1] + array[3][3]) == 10)
+    if((array[0][0] + array[2][2]) == 10)
         //return true
         return true;
     //else
@@ -79,8 +81,8 @@ bool checkLowDiag(int array[ROW][COL])
 //checkCenter - checks if center is a 5 (needed to be a magic square)
 bool checkCenter(int array[ROW][COL])
 {   
-    //if [2,2] is a 5, return true
-    if(array[2][2] == 5)
+    //if [1,1] is a 5, return true
+    if(array[1][1] == 5)
         return true;
     //else false
     else
@@ -96,19 +98,13 @@ bool checkMagicSquare(int array[ROW][COL])
     if(checkCenter(array) == true)
     {
         //increment count
-        count++;
         //check for rows
         for(int i = 0; i < ROW; i++)
         {
             //check if true
-            if(checkRow(array, i) == true)
+            if(checkRow(array, 0) == true)
             {
                 count++;
-            }
-            //break loop if any are false
-            else
-            {
-                break;
             }
         }
 
@@ -119,11 +115,6 @@ bool checkMagicSquare(int array[ROW][COL])
             if(checkCol(array, i) == true)
             {
                 count++;
-            }
-            //break loop if any are false
-            else
-            {
-                break;
             }
         }
         
@@ -159,7 +150,7 @@ void fillSquare(int array[ROW][COL], int loop)
     bool unique = true;
     int randNum;
     
-    while(checkMagicSquare(array) != true)
+    do
     {   
         //print loopCount
         printf("Current loop test: %d\n", loop);
@@ -169,8 +160,6 @@ void fillSquare(int array[ROW][COL], int loop)
         {
             for(int j = 0; j < COL; j++)
             {   
-
-
                 //Fill array
                 do
                 {
@@ -192,7 +181,7 @@ void fillSquare(int array[ROW][COL], int loop)
                 while(!unique);
 
                 array[i][j] = randNum;
-                printf("%d \n", array[i][j]);
+                //printf("%d \n", array[i][j]);
             //make sure array has no dupes
         
             //run checkSquare
@@ -201,6 +190,20 @@ void fillSquare(int array[ROW][COL], int loop)
                 //loopCount++}}
             }
         }
-        break;    
-    }
+        //break;
+        if(checkMagicSquare(array) != true )
+        {            
+            for (int i = 0; i < ROW; i++)
+            {
+                for(int j = 0; j < COL; j++)
+                {
+                    array[i][j] = 0;
+                }
+            }
+            
+            loop++; 
+        }
+
+    
+    }while(checkMagicSquare(array) != true);
 }
